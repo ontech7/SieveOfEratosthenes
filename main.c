@@ -11,7 +11,7 @@ void SieveOfEratosthenes(unsigned int size)
 
 	for (p = 2; p*p < size; p++)
 	{
-		// If it's not removed, then it's a prime number
+		/* If it's not removed (assign to 0), then it's a prime number */
 		if (prime[p])
 		{
 			/* "Remove" all multiplies */
