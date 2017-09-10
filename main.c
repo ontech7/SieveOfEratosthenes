@@ -2,12 +2,16 @@
 #include <stdio.h>
 #include <string.h>
 
+#define boolean char
+#define TRUE 1
+#define FALSE 0
+
 /* Ancient algorithm to calculate prime numbers within a certain "size" */
 void SieveOfEratosthenes(unsigned int size)
 {
-	int p;
-	int* prime = (int*)malloc((size+1) * sizeof(int));
-	memset(prime, 1, sizeof(prime));
+	int p, i;
+	boolean* prime = (boolean*)malloc((size+1) * sizeof(boolean));
+	memset(prime, TRUE, sizeof(prime));
 
 	for (p = 2; p*p < (size+1); p++)
 	{
@@ -15,8 +19,8 @@ void SieveOfEratosthenes(unsigned int size)
 		if (prime[p])
 		{
 			/* "Remove" all multiplies */
-			for (int i = p * 2; i < (size+1); i += p)
-				prime[i] = 0;
+			for (i = p * 2; i < (size+1); i += p)
+				prime[i] = FALSE;
 		}
 	}
 
