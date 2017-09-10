@@ -7,26 +7,27 @@
 #define FALSE 0
 
 /* Ancient algorithm to calculate prime numbers within a certain "size" */
-void SieveOfEratosthenes(unsigned int size)
+void SieveOfEratosthenes(unsigned int nSize)
 {
 	int p, i;
-	boolean* prime = (boolean*)malloc((size+1) * sizeof(boolean));
-	memset(prime, TRUE, sizeof(prime));
-
-	for (p = 2; p*p < (size+1); p++)
+	boolean* bPrime = (boolean*)malloc((nSize+1) * sizeof(boolean));
+	memset(prime, TRUE, sizeof(bPrime));
+	
+	/* Starting from 2; p^2 is less or equal than nSize; p++ */
+	for (p = 2; p*p < (nSize+1); p++)
 	{
-		/* If it's not removed (assign to 0), then it's a prime number */
-		if (prime[p])
+		/* If it's not removed (assigned to FALSE), then it's a prime number (assigned to TRUE) */
+		if (bPrime[p])
 		{
-			/* "Remove" all multiplies */
-			for (i = p * 2; i < (size+1); i += p)
-				prime[i] = FALSE;
+			/* Unset all multiples */
+			for (i = p * 2; i < (nSize+1); i += p)
+				bPrime[i] = FALSE;
 		}
 	}
 
 	/* If it's a prime number, then print it */
-	for (p = 2; p < (size+1); p++)
-		if (prime[p])
+	for (p = 2; p < (nSize+1); p++)
+		if (bPrime[p])
 			printf("%i ", p);
 }
 
